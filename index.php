@@ -74,8 +74,7 @@ class wechatCallbackapiTest
         $articles = "";
         for ($i=1;$i<=$articleCount;$i++)
         {
-            $list = $list[$i];
-            $title = $list['article'];
+            $title = $list[$i]['article'];
             $description = $list['source'];
             $picurl = $list['icon'];
             $url = $list['detailurl'];
