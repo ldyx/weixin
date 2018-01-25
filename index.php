@@ -91,7 +91,7 @@ class wechatCallbackapiTest
                         <FromUserName><![CDATA[%s]]></FromUsrName>
                         <CreateTime>%s</CreateTime>
                         <MsgType><![CDATA[news]]></MsgType>
-                        <ArticleCount>%s</Articlecount><Articles>".$articles."</Articles></xml>";
+                        <ArticleCount>%s</ArticleCount><Articles>".$articles."</Articles></xml>";
         $resultStr = sprintf($textTpl,$fromUsername,$toUsername,$time,$articleCount);
         echo $resultStr;        
     }
