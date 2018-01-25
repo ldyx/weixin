@@ -65,7 +65,7 @@ class wechatCallbackapiTest
         echo $resultStr;
     }
       
-    public funciton news($postObj,$articleCount,$list)
+    public function news($postObj,$articleCount,$list)
     {
         $fromUsername = $postObj->FromUserName;
         $toUsername = $postObj->ToUserName;
