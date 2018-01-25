@@ -21,39 +21,79 @@ class wechatCallbackapiTest
     
     public function tuling($postObj)
     {
-        
-        $fromUsername = $postObj->FromUserName;
-        $toUsername = $postObj->ToUserName;
-        $content = trim($postObj->Content);
-        $time = time();
         $key = "dd9ea2173ef44d29b1ad729346639c46";
         $re = json_decode(file_get_contents('http://www.tuling123.com/openapi/api?key='.$key.'&info='.$content.'&useid='.$fromUsername),true);
         $code = $re['code'];
         switch ($code){
             case 100000:
                 $content = $re['text'];
+                $this->text($postObj,$content);
                 break;
             case 200000:
                 $content = $re['text'].$re['url'];
+                $this->text($postObj,$content);
+                break;
+            case 302000:
+                $list = $re['list'];
+                $articleCount = 10;
+                $this->news($postObj,$articleCount,$list);
                 break;
             case 40004:
                 $content= '今天累了，明天接着聊啊';
+                $this->text($postObj,$content);
                 break;
             default:
                 $content = $re['text'];
+                $this->text($postObj,$content);
         }
+    }
+    
+    public funciton text($postObj,$content)
+    {
+        $fromUsername = $postObj->FromUserName;
+        $toUsername = $postObj->ToUserName;
+        $time = time();
         $textTpl = "<xml>
                     <ToUserName><![CDATA[%s]]></ToUserName>
                     <FromUserName><![CDATA[%s]]></FromUserName>
                     <CreateTime>%s</CreateTime>
-                    <MsgType><![CDATA[%s]]></MsgType>
+                    <MsgType><![CDATA[text]]></MsgType>
                     <Content><![CDATA[%s]]></Content>
                     <FuncFlag>0</FuncFlag>
                     </xml>";
-         $msgType = "text";
-         $contentStr = date("Y-m-d H:i:s",time());
-         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $content);
-         echo $resultStr;
+        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $content);
+        echo $resultStr;
+    }
+      
+    public funciton news($postObj,$articleCount,$list)
+    {
+        $fromUsername = $postObj->FromUserName;
+        $toUsername = $postObj->ToUserName;
+        $time = time();
+        $articles = "";
+        for ($i=1;$i<=$articleCount;$++)
+        {
+            $list = $list[$i];
+            $title = $list['title'];
+            $description = $list['source'];
+            $picurl = $list['icon'];
+            $url = $list['detailurl'];
+            $article = "<item>
+                         <Title><![CDATA[%s]]></Title>
+                         <Description><![CDATA[%s]]></Description>
+                         <PicUrl><![CDATA[%s]]></PicUrl>
+                         <Url><![CDATA[%s]]></Url>
+                         </item>";
+            $articles = $articles.sprintf($article,$title,$description,$picurl,$url);
+        }
+        $textTpl = "<xml>
+                        <ToUserName><![CDATA[%s]]></ToUserName>
+                        <FromUserName><![CDATA[%s]]></FromUsrName>
+                        <CreateTime>%s</CreateTime>
+                        <MsgType><![CDATA[news]]></MsgType>
+                        <ArticleCount>%s</Articlecount><Articles>".$articles."</Articles></xml>";
+        $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $content);
+        echo $resultStr;        
     }
 }
 ?>
