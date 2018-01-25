@@ -6,13 +6,24 @@ $wechatObj->responseMsg();
 
 class wechatCallbackapiTest
 {
-    public function responseMsg()
+    public function style()
     {
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-
         if (!empty($postStr)){
             libxml_disable_entity_loader(true);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $msgType = trim($postObj->MsgType);
+            if ($msgType = "text")
+            {
+                tuling($postObj);
+            }else{
+                echo "暂不识别！";
+            }
+        }
+    }
+    
+    public function tuling($postObj)
+    {
             $fromUsername = $postObj->FromUserName;
             $toUsername = $postObj->ToUserName;
             $keyword = trim($postObj->Content);
@@ -25,14 +36,12 @@ class wechatCallbackapiTest
                         <Content><![CDATA[%s]]></Content>
                         <FuncFlag>0</FuncFlag>
                         </xml>";
-            if(!empty($keyword))
-            {
+        
                 $msgType = "text";
                 $contentStr = date("Y-m-d H:i:s",time());
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $keyword);
                 echo $resultStr;
-            }
-        }
+        
     }
 }
 ?>
