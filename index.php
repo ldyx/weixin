@@ -16,8 +16,6 @@ class wechatCallbackapiTest
             if ($msgType == "text")
             {
                 $this->tuling($postObj);
-            }else{
-                echo "暂不识别！";
             }
     }
     
@@ -54,7 +52,7 @@ class wechatCallbackapiTest
                     </xml>";
          $msgType = "text";
          $contentStr = date("Y-m-d H:i:s",time());
-         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $keyword);
+         $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $content);
          echo $resultStr;
     }
 }
