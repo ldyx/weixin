@@ -15,7 +15,7 @@ class wechatCallbackapiTest
             $msgType = $postObj->MsgType;
             if ($msgType == "text")
             {
-                tuling($postObj);
+                $this->tuling($postObj);
             }else{
                 echo "暂不识别！";
             }
