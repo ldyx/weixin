@@ -9,17 +9,16 @@ class wechatCallbackapiTest
     public function style()
     {
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        if (!empty($postStr)){
+
             libxml_disable_entity_loader(true);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-            $msgType = trim($postObj->MsgType);
-            if ($msgType = "text")
+            $msgType = $postObj->MsgType;
+            if ($msgType == "text")
             {
                 tuling($postObj);
             }else{
                 echo "暂不识别！";
             }
-        }
     }
     
     public function tuling($postObj)
