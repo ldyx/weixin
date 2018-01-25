@@ -3,24 +3,19 @@ header('Content-type:text');
 define("TOKEN", "weixin");
 $wechatObj = new wechatCallbackapiTest();
 if (isset($_GET['echostr'])) {
-    $wechatObj->valid();
-}else{
-    $wechatObj->responseMsg();
+    if($wechatObj->checkSignature())
+    {
+        $wechatObj->responseMsg();
+    }esle{
+        exit;
+    }
 }
 
 class wechatCallbackapiTest
 {
-    public function valid()
-    {
-        $echoStr = $_GET["echostr"];
-        if($this->checkSignature()){
-            header('content-type:text');
-            echo $echoStr;
-            exit;
-        }
-    }
+    
 
-    private function checkSignature()
+    public function checkSignature()
     {
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
@@ -57,16 +52,13 @@ class wechatCallbackapiTest
                         <Content><![CDATA[%s]]></Content>
                         <FuncFlag>0</FuncFlag>
                         </xml>";
-            if($keyword == "?" || $keyword == "？")
+            if($keyword != "")
             {
                 $msgType = "text";
                 $contentStr = date("Y-m-d H:i:s",time());
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 echo $resultStr;
             }
-        }else{
-            echo "";
-            exit;
         }
     }
 }
