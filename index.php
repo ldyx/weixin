@@ -27,7 +27,7 @@ class wechatCallbackapiTest
         $content = trim($postObj->Content);
         $time = time();
         $key = "dd9ea2173ef44d29b1ad729346639c46";
-        $re = json_decode(file_contents('http://www.tuling123.com/openapi/api?key='.$key.'&info='.$content.'&useid='.$fromUsername),true);
+        $re = json_decode(file_get_contents('http://www.tuling123.com/openapi/api?key='.$key.'&info='.$content.'&useid='.$fromUsername),true);
         $code = $re['code'];
         switch ($code){
             case 100000:
