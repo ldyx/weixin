@@ -2,7 +2,7 @@
 header('Content-type:text');
 define("TOKEN", "weixin");
 $wechatObj = new wechatCallbackapiTest();
-$wechatObj->responseMsg();
+$wechatObj->style();
 
 class wechatCallbackapiTest
 {
