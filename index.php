@@ -88,7 +88,7 @@ class wechatCallbackapiTest
         }
         $textTpl = "<xml>
                         <ToUserName><![CDATA[%s]]></ToUserName>
-                        <FromUserName><![CDATA[%s]]></FromUsrName>
+                        <FromUserName><![CDATA[%s]]></FromUserName>
                         <CreateTime>%s</CreateTime>
                         <MsgType><![CDATA[news]]></MsgType>
                         <ArticleCount>%s</ArticleCount><Articles>".$articles."</Articles></xml>";
