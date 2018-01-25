@@ -71,7 +71,7 @@ class wechatCallbackapiTest
         $toUsername = $postObj->ToUserName;
         $time = time();
         $articles = "";
-        for ($i=1;$i<=$articleCount;$++)
+        for ($i=1;$i<=$articleCount;$i++)
         {
             $list = $list[$i];
             $title = $list['title'];
