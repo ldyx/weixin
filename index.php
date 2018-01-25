@@ -36,7 +36,7 @@ class wechatCallbackapiTest
                 break;
             case 302000:
                 $list = $re['list'];
-                $articleCount = 10;
+                $articleCount = 5;
                 $this->news($postObj,$articleCount,$list);
                 break;
             case 40004:
