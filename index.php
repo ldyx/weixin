@@ -48,7 +48,7 @@ class wechatCallbackapiTest
         }
     }
     
-    public funciton text($postObj,$content)
+    public function text($postObj,$content)
     {
         $fromUsername = $postObj->FromUserName;
         $toUsername = $postObj->ToUserName;
