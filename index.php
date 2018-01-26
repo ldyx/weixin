@@ -16,7 +16,40 @@ class wechatCallbackapiTest
             if ($msgType == "text")
             {
                 $this->tuling($postObj);
+            }elseif($msgType == "image")
+            {
+                $this->youtu($postObj);
             }
+    }
+    
+    public function youtu($postObj)
+    {
+        $picUrl = $postObj -> PicUrl;
+        //引入SDK
+        require("youtu/include.php");
+        use TencentYoutuyun\Youtu;    
+        use TencentYoutuyun\Conf;      
+        use TencentYoutuyun\Auth;
+        //设置APP鉴权信息
+        $appid='10116870';
+        $secretId='AKIDH5lF0jv4bxEHXfRTEoCe3b0sZHpCPRp2';
+        $secretKey='EPsAIF2JVXN3f6RcmpncPH5mbLuKau3U';
+        $userid='1059902360';  
+        //初始化
+        Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
+        //人脸检测接口调用
+        $uploadRet = YouTu::detectfaceurl($picUrl, 1);
+        $age = $uploadRet['face'][0]['age'];
+        $genderNum = $uploadRet['face'][0]['gender'];
+        if ($genderNum >=50)
+        {
+	        $gender = "男性";
+        }else{
+	        $gender = "女性";
+        }
+        $beauty = $uploadRet['face'][0]['beauty'];
+        $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
+        $this -> text($postObj,$content);
     }
     
     public function tuling($postObj)
