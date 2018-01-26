@@ -29,8 +29,8 @@ class wechatCallbackapiTest
     
     public function youtu($postObj)
     {
-        $picUrl = “http://mmbiz.qpic.cn/mmbiz_jpg/ia42ZtibfdQqDzSTPFEHf0Kry0jO5w60tov0EbwAP2clPsAbwezCb6icATyI5tfafOGMgYU3ynypN2Rwibp666KC5g/0
-”;
+        $picUrl = "http://mmbiz.qpic.cn/mmbiz_jpg/ia42ZtibfdQqDzSTPFEHf0Kry0jO5w60tov0EbwAP2clPsAbwezCb6icATyI5tfafOGMgYU3ynypN2Rwibp666KC5g/0
+";
         //引入SDK
         //设置APP鉴权信息
         $appid='10116870';
