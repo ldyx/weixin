@@ -91,7 +91,7 @@ class wechatCallbackapiTest
                          <Url><![CDATA[%s]]></Url>
                          </item>";
             $articles = $articles.sprintf($article,$title,$description,$picurl,$url);
-        }esle{
+        }else{
         for ($i=0;$i<=$articleCount-1;$i++)
         {
             $li = array_values($list[$i]);
