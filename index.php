@@ -27,9 +27,9 @@ class wechatCallbackapiTest
         $picUrl = $postObj -> PicUrl;
         //引入SDK
         require("youtu/include.php");
-        use TencentYoutuyun\Youtu;    
-        use TencentYoutuyun\Conf;      
-        use TencentYoutuyun\Auth;
+        //use TencentYoutuyun\Youtu;    
+        //use TencentYoutuyun\Conf;      
+        //use TencentYoutuyun\Auth;
         //设置APP鉴权信息
         $appid='10116870';
         $secretId='AKIDH5lF0jv4bxEHXfRTEoCe3b0sZHpCPRp2';
