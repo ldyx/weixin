@@ -22,16 +22,13 @@ class wechatCallbackapiTest
                 $this->tuling($postObj);
             }elseif($msgType == "image")
             {
-		$content = $postObj->PicUrl;
-                $this->youtu($postObj);
+		$picUrl = $postObj->PicUrl;
+                $this->youtu($postObj,$picUrl);
             }
     }
     
-    public function youtu($postObj)
+    public function youtu($postObj,$picUrl)
     {
-        $picUrl = "http://mmbiz.qpic.cn/mmbiz_jpg/ia42ZtibfdQqDzSTPFEHf0Kry0jO5w60tov0EbwAP2clPsAbwezCb6icATyI5tfafOGMgYU3ynypN2Rwibp666KC5g/0
-";
-        //引入SDK
         //设置APP鉴权信息
         $appid='10116870';
         $secretId='AKIDH5lF0jv4bxEHXfRTEoCe3b0sZHpCPRp2';
