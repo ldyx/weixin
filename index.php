@@ -22,7 +22,7 @@ class wechatCallbackapiTest
             }elseif($msgType == "image")
             {
 		$content = $postObj->PicUrl;
-                $this->text($postObj,$content);
+                $this->youtu($postObj);
             }
     }
     
