@@ -3,6 +3,13 @@ require("youtu/include.php");
 use TencentYoutuyun\Youtu;    
 use TencentYoutuyun\Conf;      
 use TencentYoutuyun\Auth;
+//设置APP鉴权信息
+$appid='10116870';
+$secretId='AKIDH5lF0jv4bxEHXfRTEoCe3b0sZHpCPRp2';
+$secretKey='EPsAIF2JVXN3f6RcmpncPH5mbLuKau3U';
+$userid='1059902360';  
+//初始化
+Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
 header('Content-type:text');
 define("TOKEN", "weixin");
 $wechatObj = new wechatCallbackapiTest();
@@ -29,13 +36,6 @@ class wechatCallbackapiTest
     
     public function youtu($postObj,$picUrl)
     {
-        //设置APP鉴权信息
-        $appid='10116870';
-        $secretId='AKIDH5lF0jv4bxEHXfRTEoCe3b0sZHpCPRp2';
-        $secretKey='EPsAIF2JVXN3f6RcmpncPH5mbLuKau3U';
-        $userid='1059902360';  
-        //初始化
-        Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
         //人脸检测接口调用
         $uploadRet = YouTu::detectfaceurl($picUrl, 1);
         @$age = $uploadRet['face'][0]['age'];
