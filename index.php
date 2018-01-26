@@ -37,7 +37,7 @@ class wechatCallbackapiTest
 	//初始化
 	Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
         //人脸检测接口调用
-        $uploadRet = YouTu::detectfaceurl($pic, 1);
+        $uploadRet = YouTu::detectfaceurl("$pic", 1);
         @$age = $uploadRet['face'][0]['age'];
         @$genderNum = $uploadRet['face'][0]['gender'];
         if ($genderNum >=50)
