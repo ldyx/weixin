@@ -37,7 +37,11 @@ class wechatCallbackapiTest
             case 302000:
                 $list = $re['list'];
                 $articleCount = 6;
-                $this->news($postObj,$articleCount,$list);
+                $this->news($postObj,$list);
+                break;
+            case 308000:
+                $list = $re['list'];
+                $this->news($postObj,$list);
                 break;
             case 40004:
                 $content= '今天累了，明天接着聊啊';
@@ -66,18 +70,20 @@ class wechatCallbackapiTest
         echo $resultStr;
     }
       
-    public function news($postObj,$articleCount,$list)
+    public function news($postObj,$list)
     {
         $fromUsername = $postObj->FromUserName;
         $toUsername = $postObj->ToUserName;
         $time = time();
+        $articleCount = (count($list) >= 6) ? 6 : count($list);
         $articles = "";
-        for ($i=1;$i<=$articleCount;$i++)
+        if ($articleCount == 1)
         {
-            $title = $list[$i]['article'];
-            $description = $list[$i]['source'];
-            $picurl = $list[$i]['icon'];
-            $url = $list[$i]['detailurl'];
+            $li = array_values($list);
+            $title = $li[0];
+            $picurl = $li[1];
+            $description = $li[2];
+            $url = $li[3];
             $article = "<item>
                          <Title><![CDATA[%s]]></Title>
                          <Description><![CDATA[%s]]></Description>
@@ -85,7 +91,22 @@ class wechatCallbackapiTest
                          <Url><![CDATA[%s]]></Url>
                          </item>";
             $articles = $articles.sprintf($article,$title,$description,$picurl,$url);
-        }
+        }esle{
+        for ($i=0;$i<=$articleCount-1;$i++)
+        {
+            $li = array_values($list[$i]);
+            $title = $li[0];
+            $description = $li[1];
+            $picurl = $li[2];
+            $url = $li[3];
+            $article = "<item>
+                         <Title><![CDATA[%s]]></Title>
+                         <Description><![CDATA[%s]]></Description>
+                         <PicUrl><![CDATA[%s]]></PicUrl>
+                         <Url><![CDATA[%s]]></Url>
+                         </item>";
+            $articles = $articles.sprintf($article,$title,$description,$picurl,$url);
+        }}
         $textTpl = "<xml>
                         <ToUserName><![CDATA[%s]]></ToUserName>
                         <FromUserName><![CDATA[%s]]></FromUserName>
