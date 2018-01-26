@@ -36,7 +36,7 @@ class wechatCallbackapiTest
     
     public function youtu($postObj,$pic)
     {
-        //人脸检测接口调用
+        //人脸检测接口调用d 
         $uploadRet = YouTu::detectfaceurl($pic, 1);
         @$age = $uploadRet['face'][0]['age'];
         @$genderNum = $uploadRet['face'][0]['gender'];
