@@ -29,15 +29,15 @@ class wechatCallbackapiTest
                 $this->tuling($postObj);
             }elseif($msgType == "image")
             {
-		$picUrl = "http://mmbiz.qpic.cn/mmbiz_jpg/ia42ZtibfdQqDzSTPFEHf0Kry0jO5w60tov0EbwAP2clPsAbwezCb6icATyI5tfafOGMgYU3ynypN2Rwibp666KC5g/0";
-                $this->youtu($postObj,$picUrl);
+		$pic = $postObj->PicUrl;
+                $this->youtu($postObj,$pic);
             }
     }
     
-    public function youtu($postObj,$picUrl)
+    public function youtu($postObj,$pic)
     {
         //人脸检测接口调用
-        $uploadRet = YouTu::detectfaceurl($picUrl, 1);
+        $uploadRet = YouTu::detectfaceurl($pic, 1);
         @$age = $uploadRet['face'][0]['age'];
         @$genderNum = $uploadRet['face'][0]['gender'];
         if ($genderNum >=50)
@@ -47,7 +47,7 @@ class wechatCallbackapiTest
 	        $gender = "女性";
         }
         @$beauty = $uploadRet['face'][0]['beauty'];
-        $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty.$picUrl;
+        $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty.$pic;
         $this -> text($postObj,$content);
     }
     
