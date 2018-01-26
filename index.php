@@ -40,15 +40,15 @@ class wechatCallbackapiTest
         Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
         //人脸检测接口调用
         $uploadRet = YouTu::detectfaceurl($picUrl, 1);
-        $age = $uploadRet['face'][0]['age'];
-        $genderNum = $uploadRet['face'][0]['gender'];
+        @$age = $uploadRet['face'][0]['age'];
+        @$genderNum = $uploadRet['face'][0]['gender'];
         if ($genderNum >=50)
         {
 	        $gender = "男性";
         }else{
 	        $gender = "女性";
         }
-        $beauty = $uploadRet['face'][0]['beauty'];
+        @$beauty = $uploadRet['face'][0]['beauty'];
         $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
         $this -> text($postObj,$content);
     }
