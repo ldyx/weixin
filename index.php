@@ -49,7 +49,7 @@ class wechatCallbackapiTest
 	        $gender = "女性";
         }
         @$beauty = $uploadRet['face'][0]['beauty'];
-        $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
+        $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty.$picUrl;
         $this -> text($postObj,$content);
     }
     
