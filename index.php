@@ -29,7 +29,7 @@ class wechatCallbackapiTest
                 $this->tuling($postObj);
             }elseif($msgType == "image")
             {
-		$picUrl = $postObj->PicUrl;
+		$picUrl = "http://mmbiz.qpic.cn/mmbiz_jpg/ia42ZtibfdQqDzSTPFEHf0Kry0jO5w60tov0EbwAP2clPsAbwezCb6icATyI5tfafOGMgYU3ynypN2Rwibp666KC5g/0";
                 $this->youtu($postObj,$picUrl);
             }
     }
