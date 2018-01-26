@@ -37,11 +37,13 @@ class wechatCallbackapiTest
             case 302000:
                 $list = $re['list'];
                 $articleCount = 6;
-                $this->news($postObj,$list);
+                $articleCount = (count($list) >= 6) ? 6 : count($list);
+                $this->news($postObj,$list,$articleCount);
                 break;
             case 308000:
                 $list = $re['list'];
-                $this->news($postObj,$list);
+                $articleCount = 1;
+                $this->news($postObj,$list,$articleCount);
                 break;
             case 40004:
                 $content= '今天累了，明天接着聊啊';
@@ -70,12 +72,11 @@ class wechatCallbackapiTest
         echo $resultStr;
     }
       
-    public function news($postObj,$list)
+    public function news($postObj,$list,$articleCount)
     {
         $fromUsername = $postObj->FromUserName;
         $toUsername = $postObj->ToUserName;
         $time = time();
-        $articleCount = (count($list) >= 6) ? 6 : count($list);
         $articles = "";
         if ($articleCount == 1)
         {
