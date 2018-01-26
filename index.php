@@ -21,13 +21,14 @@ class wechatCallbackapiTest
                 $this->tuling($postObj);
             }elseif($msgType == "image")
             {
-                $this->youtu($postObj);
+		$content = $postObj->PicUrl;
+                $this->text($postObj,$content);
             }
     }
     
     public function youtu($postObj)
     {
-        $picUrl = "http://www.hercity.com/data/upfiles/2012/04/20120406102117563517.jpg";
+        $picUrl = $postObj->PicUrl;
         //引入SDK
         require("youtu/include.php");
         //设置APP鉴权信息
