@@ -29,7 +29,7 @@ class wechatCallbackapiTest
     public function youtu($postObj,$pic)
     {
 	require("youtu/include.php");	    
-	//设置APP鉴权信息
+	//设置APP鉴权信息h
 	$appid='10116870';
 	$secretId='AKIDH5lF0jv4bxEHXfRTEoCe3b0sZHpCPRp2';
 	$secretKey='EPsAIF2JVXN3f6RcmpncPH5mbLuKau3U';
