@@ -27,7 +27,7 @@ class wechatCallbackapiTest
     
     public function youtu($postObj)
     {
-        $picUrl = http://www.hercity.com/data/upfiles/2012/04/20120406102117563517.jpg;
+        $picUrl = “http://www.hercity.com/data/upfiles/2012/04/20120406102117563517.jpg”;
         //引入SDK
         require("youtu/include.php");
         //设置APP鉴权信息
