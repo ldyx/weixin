@@ -26,26 +26,25 @@ class wechatCallbackapiTest
         $re = json_decode(file_get_contents('http://www.tuling123.com/openapi/api?key='.$key.'&info='.$content.'&useid='.$fromUsername),true);
         $code = $re['code'];
         switch ($code){
-            case 100000:
+            case 100000:    //普通文本类
                 $content = $re['text'];
                 $this->text($postObj,$content);
                 break;
-            case 200000:
+            case 200000:    //链接类
                 $content = $re['text'].$re['url'];
                 $this->text($postObj,$content);
                 break;
-            case 302000:
+            case 302000:    //新闻类
                 $list = $re['list'];
-                $articleCount = 6;
                 $articleCount = (count($list) >= 6) ? 6 : count($list);
                 $this->news($postObj,$list,$articleCount);
                 break;
-            case 308000:
+            case 308000:    //菜谱类
                 $list = $re['list'][0];
                 $articleCount = 1;
                 $this->news($postObj,$list,$articleCount);
                 break;
-            case 40004:
+            case 40004:    //次数用完
                 $content= '今天累了，明天接着聊啊';
                 $this->text($postObj,$content);
                 break;
