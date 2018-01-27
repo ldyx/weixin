@@ -36,7 +36,8 @@ class wechatCallbackapiTest
 	$userid='1059902360';  
 	//初始化
 	Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
-        //人脸检测接口调用$uploadRet = YouTu::fuzzydetecturl("$pic");
+        //人脸检测接口调用
+	    $uploadRet = YouTu::fuzzydetecturl("$pic");
 
 if ($uploadRet['fuzzy_confidence']<=0.3){
 $uploadRet = YouTu::imagetagurl("$pic");
@@ -77,7 +78,7 @@ switch ($tagName)
 		$this -> text($postObj,$content);
 		break;
 	case "文本":
-		$uploadRet = YouTu::generalocrurl("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2237585379,1781173340&fm=27&gp=0.jpg", $seq = '');
+		$uploadRet = YouTu::generalocrurl("$pic", $seq = '');
 		$content = var_dump($uploadRet);
 		$items = $uploadRet['items'];
 		$itemsNum = count($items);
