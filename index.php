@@ -64,6 +64,7 @@ class wechatCallbackapiTest
         		}
         		$beauty = $uploadRet['face'][0]['beauty'];
         		$content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
+			$content = $tagName;
         		$this -> text($postObj,$content);
 			break;
 		default:
