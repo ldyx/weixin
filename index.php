@@ -79,7 +79,6 @@ switch ($tagName)
 		break;
 	case "文本":
 		$uploadRet = YouTu::generalocrurl("$pic", $seq = '');
-		$content = var_dump($uploadRet);
 		$items = $uploadRet['items'];
 		$itemsNum = count($items);
 		$content = "";
@@ -87,7 +86,6 @@ switch ($tagName)
 		{
 			$content = $content."\n".$items[$i]['itemstring'];
 		}
-		$content = var_dump($uploadRet);
 		$this -> text($postObj,$content);
 		break;
 	default:
@@ -95,9 +93,6 @@ switch ($tagName)
 		$this -> text($postObj,$content);
 }}else
 {
-	//var_dump($uploadRet);
-	$a = 0.8;
-	var_dump($a);
 	echo "亲，你提供的图片太模糊了，我看不清啊";
 }
     }
