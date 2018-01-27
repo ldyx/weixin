@@ -37,7 +37,7 @@ class wechatCallbackapiTest
 	//初始化
 	Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
         //人脸检测接口调用
-	$uploadRet1 = YouTu::imagetagurl("$pic");
+	$uploadRet = YouTu::imagetagurl("$pic");
 	$tags = $uploadRet['tags'];
 	$tagsNum = count($tags);
 	$maxConfidence = 0;
