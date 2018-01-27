@@ -34,7 +34,7 @@ class wechatCallbackapiTest
 	$secretId='AKIDH5lF0jv4bxEHXfRTEoCe3b0sZHpCPRp2';
 	$secretKey='EPsAIF2JVXN3f6RcmpncPH5mbLuKau3U';
 	$userid='1059902360';  
-	//初始化
+	//初始化年
 	Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
         //人脸检测接口调用
 	$uploadRet = YouTu::imagetagurl("$pic");
