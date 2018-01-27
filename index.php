@@ -85,11 +85,22 @@ class wechatCallbackapiTest
 					$hat = "戴了帽子";
 					break;
 			}
-        		$content ="检测结果如下：\n性别：".$gender."\n年龄：".$age."\n微笑：".$expression."\n颜值：".$beauty."\n".$glasses."\n".$hat;
+        		$content ="检测结果如下：\n性别：".$gender."\n年龄：".$age."\n微笑：".$expression."\n颜值：".$beauty."\n".$glasses."\n".$hat."\n暂时只支持检测图片中一个人脸（以脸最大的为准）";
         		$this -> text($postObj,$content);
 			break;
+		case "文本":
+			$uploadRet = YouTu::generalocrurl("$pic", 1);
+			$items = $uploadRet['items'];
+			$itemsNum = count($items);
+			$content = "";
+			for ($i=0;$i<$itemsNum;$i++)
+			{
+				$content = $content."\n".$items[$i]["itemstring"];
+			}
+			$this -> text($postObj,$content);
+			break;
 		default:
-			$content = $tagName;
+			$content = "无法进行颜值检测，因为据我的观察，这张图片最有是：".$tagName;
 			$this -> text($postObj,$content);
 	}
         
