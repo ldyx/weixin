@@ -37,28 +37,7 @@ class wechatCallbackapiTest
 	//初始化
 	Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
         //人脸检测接口调用
-        $uploadRet = YouTu::fuzzydetecturl("$pic",1);
-	if ($uploadRet['fuzzy_confidence'] <= 0.3)
-	{
-	$uploadRet = YouTu::imagetagurl("$pic");
-	$tags = $uploadRet['tags'];
-	$tagsNum = count($tags);
-	$maxConfidence = 0;
-	for ($i=0;$i<$tagsNum;$i++)
-	{
-		$tagConfidence = $tags[$i]['tag_confidence'];
-		if ($maxConfidence <= $tagConfidence)
-		{
-			$tagName = $tags[$i]['tag_name'];
-			$maxConfidence = $tagConfidence;
-		}
-	}
-	switch ($tagName)
-	{
-		case "女孩":
-			
-		case "男孩":
-			$uploadRet = YouTu::detectfaceurl("$pic", 1);
+        $uploadRet = YouTu::detectfaceurl("$pic", 1);
         @$age = $uploadRet['face'][0]['age'];
         @$genderNum = $uploadRet['face'][0]['gender'];
         if ($genderNum >=50)
@@ -70,26 +49,6 @@ class wechatCallbackapiTest
         @$beauty = $uploadRet['face'][0]['beauty'];
         $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
         $this -> text($postObj,$content);
-			break;
-		case "文本":
-			$uploadRet = YouTu::generalocrurl("$pic", $seq = '');
-			$items = $uploadRet['items'];
-			$itemsNum = count($items);
-			$content = "";
-			for ($i=0;$i<$itemsNum;$i++)
-			{
-				$content = $content."\n".$items[$i]['itemstring'];
-			}
-			$this -> text($postObj,$content);
-			break;
-		default:
-			$content = $tagName;
-			$this -> text($postObj,$content);
-	}
-}else{
-	$content = "亲，你的图片太模糊了，看不清啊";
-	echo $content;
-}
     }
     
     public function tuling($postObj)
