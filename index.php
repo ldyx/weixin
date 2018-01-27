@@ -36,19 +36,66 @@ class wechatCallbackapiTest
 	$userid='1059902360';  
 	//初始化
 	Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
-        //人脸检测接口调用
-        $uploadRet = YouTu::detectfaceurl("$pic", 1);
-        @$age = $uploadRet['face'][0]['age'];
-        @$genderNum = $uploadRet['face'][0]['gender'];
-        if ($genderNum >=50)
-        {
-	        $gender = "男性";
-        }else{
-	        $gender = "女性";
-        }
-        @$beauty = $uploadRet['face'][0]['beauty'];
-        $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
-        $this -> text($postObj,$content);
+        //人脸检测接口调用$uploadRet = YouTu::fuzzydetecturl("$pic");
+
+if ($uploadRet['fuzzy_confidence']<=0.3){
+$uploadRet = YouTu::imagetagurl("$pic");
+$tags = $uploadRet['tags'];
+$tagsNum = count($tags);
+
+$maxConfidence = 0;
+for ($i=0;$i<$tagsNum;$i++)
+{
+	$tagConfidence = $tags[$i]['tag_confidence'];
+	if ($maxConfidence <= $tagConfidence)
+	{
+		$tagName = $tags[$i]['tag_name'];
+		$maxConfidence = $tagConfidence;
+	}
+}
+switch ($tagName)
+{
+	case "女孩":
+		$uploadRet = YouTu::detectfaceurl("$pic",1);
+		$gender = "女性";
+
+	case "男孩":
+		$uploadRet = YouTu::detectfaceurl("$pic",1);
+		if ($gender == "女性"){
+			
+		}else{$gender = "男性";}
+		$age = $uploadRet['face'][0]['age'];
+		$beauty = $uploadRet['face'][0]['beauty'];
+		$expression = $uploadRet['face'][0]['expression'];
+		$glasses = $uploadRet['face'][0]['glasses'];
+		if ($glasses == "0"){
+			$glasses = "没戴眼镜";
+		}elseif($glasses == "1"){
+			$glasses = "戴了眼镜";
+		}else{$glasses = "戴了墨镜"}
+		$content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty."微笑程度：".$expression.$glasses;
+		$this -> text($postObj,$content);
+		break;
+	case "文本":
+		$uploadRet = YouTu::generalocrurl("$pic",1);
+		$items = $uploadRet['items'];
+		$itemsNum = count($items);
+		$content = "";
+		for ($i=0;$i<$itemsNum;$i++)
+		{
+			$content = $content."\n".$items[$i]['itemstring'];
+		}
+		$this -> text($postObj,$content);		
+		break;
+	default:
+		echo $tagName;
+}}else
+{
+	//var_dump($uploadRet);
+	$a = 0.8;
+	var_dump($a);
+	echo "亲，你提供的图片太模糊了，我看不清啊";
+}
     }
     
     public function tuling($postObj)
