@@ -77,7 +77,7 @@ switch ($tagName)
 		$this -> text($postObj,$content);
 		break;
 	case "文本":
-		$uploadRet = YouTu::generalocrurl("$pic",1);
+		$uploadRet = YouTu::generalocrurl("$pic");
 		$items = $uploadRet['items'];
 		$itemsNum = count($items);
 		$content = "";
@@ -85,10 +85,11 @@ switch ($tagName)
 		{
 			$content = $content."\n".$items[$i]['itemstring'];
 		}
-		$this -> text($postObj,$content);		
+		$this -> text($postObj,$content);
 		break;
 	default:
-		echo $tagName;
+		$content = $tagName;
+		$this -> text($postObj,$content);
 }}else
 {
 	//var_dump($uploadRet);
