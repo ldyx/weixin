@@ -90,7 +90,7 @@ class wechatCallbackapiTest
 			break;
 		case "文本":
 			$uploadRet = YouTu::generalocrurl("$pic", 1);
-			$content = var_dump($uploadRet);
+			$content = $uploadRet['errormsg'];
 			$this -> text($postObj,$content);
 			/*
 			$items = $uploadRet['items'];
