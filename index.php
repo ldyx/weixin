@@ -72,7 +72,7 @@ switch ($tagName)
 			$glasses = "没戴眼镜";
 		}elseif($glasses == "1"){
 			$glasses = "戴了眼镜";
-		}else{$glasses = "戴了墨镜"}
+		}else{$glasses = "戴了墨镜";}
 		$content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty."微笑程度：".$expression.$glasses;
 		$this -> text($postObj,$content);
 		break;
