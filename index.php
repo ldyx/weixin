@@ -85,7 +85,7 @@ class wechatCallbackapiTest
 					$hat = "戴了帽子";
 					break;
 			}
-        		$content ="检测结果如下：\n性别：".$gender."\n年龄："$age."\n微笑：".$expression."\n颜值：".$beauty."\n".$glasses."\n".$hat;
+        		$content ="检测结果如下：\n性别：".$gender."\n年龄：".$age."\n微笑：".$expression."\n颜值：".$beauty."\n".$glasses."\n".$hat;
         		$this -> text($postObj,$content);
 			break;
 		default:
