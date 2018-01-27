@@ -53,7 +53,7 @@ class wechatCallbackapiTest
 	switch ($tagName)
 	{
 		case "女孩":
-			$gender = "女性":
+			$gender = "女性"；
 		case "男孩":
 			$uploadRet = YouTu::detectfaceurl("$pic", 1);
 			if ($gender == "女性"){
