@@ -77,7 +77,7 @@ switch ($tagName)
 		$this -> text($postObj,$content);
 		break;
 	case "文本":
-		$uploadRet = YouTu::generalocrurl($pic, $seq = '');
+		$uploadRet = YouTu::generalocrurl("$pic", $seq = '');
 		$items = $uploadRet['items'];
 		$itemsNum = count($items);
 		$content = "";
