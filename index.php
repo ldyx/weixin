@@ -2,7 +2,7 @@
 use TencentYoutuyun\Youtu;    
 use TencentYoutuyun\Conf;      
 use TencentYoutuyun\Auth;
-header('Content-type:text');
+
 define("TOKEN", "weixin");
 $wechatObj = new wechatCallbackapiTest();
 $wechatObj->style();
