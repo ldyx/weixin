@@ -62,9 +62,9 @@ switch ($tagName)
 
 	case "男孩":
 		$uploadRet = YouTu::detectfaceurl("$pic",1);
-		if ($gender == "女性"){
+		if (){
 		
-		}else{$gender = "男性";echo "男性";}
+		}else{$gender = "男性";}
 		$age = $uploadRet['face'][0]['age'];
 		$beauty = $uploadRet['face'][0]['beauty'];
 		$expression = $uploadRet['face'][0]['expression'];
@@ -76,7 +76,6 @@ switch ($tagName)
 			$glasses = "戴了眼镜";
 		}else{$glasses = "戴了墨镜";}
 		$content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty."\n微笑程度：".$expression."\n".$glasses;
-		echo $content;
 		$this -> text($postObj,$content);
 		break;
 	case "文本":
