@@ -68,6 +68,8 @@ class wechatCallbackapiTest
         		$this -> text($postObj,$content);
 			break;
 		default:
+			$content = $tagName;
+			$this -> text($postObj,$content);
 	}
         
     }
