@@ -37,18 +37,38 @@ class wechatCallbackapiTest
 	//初始化
 	Conf::setAppInfo($appid, $secretId, $secretKey, $userid,conf::API_YOUTU_END_POINT);
         //人脸检测接口调用
-        $uploadRet = YouTu::detectfaceurl("$pic", 1);
-        @$age = $uploadRet['face'][0]['age'];
-        @$genderNum = $uploadRet['face'][0]['gender'];
-        if ($genderNum >=50)
-        {
-	        $gender = "男性";
-        }else{
-	        $gender = "女性";
-        }
-        @$beauty = $uploadRet['face'][0]['beauty'];
-        $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
-        $this -> text($postObj,$content);
+	$uploadRet1 = YouTu::imagetagurl("$pic");
+	$tags = $uploadRet['tags'];
+	$tagsNum = count($tags);
+	$maxConfidence = 0;
+	for ($i=0;$i<$tagsNum;$i++)
+	{
+		$tagConfidence = $tags[$i]['tag_confidence'];
+		if ($maxConfidence <= $tagConfidence)
+		{
+			$tagName = $tags[$i]['tag_name'];
+			$maxConfidence = $tagConfidence;
+		}
+	}
+	switch ($tagName)
+	{
+		case "女孩":
+			$uploadRet = YouTu::detectfaceurl("$pic", 1);
+        		$age = $uploadRet['face'][0]['age'];
+        		$genderNum = $uploadRet['face'][0]['gender'];
+        		if ($genderNum >=50)
+        		{
+	        		$gender = "男性";
+        		}else{
+			        $gender = "女性";
+        		}
+        		$beauty = $uploadRet['face'][0]['beauty'];
+        		$content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
+        		$this -> text($postObj,$content);
+			break;
+		default:
+	}
+        
     }
     
     public function tuling($postObj)
