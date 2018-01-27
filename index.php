@@ -62,7 +62,7 @@ switch ($tagName)
 
 	case "男孩":
 		$uploadRet = YouTu::detectfaceurl("$pic",1);
-		if (){
+		if ($gender = "女性"){
 		
 		}else{$gender = "男性";}
 		$age = $uploadRet['face'][0]['age'];
