@@ -90,6 +90,9 @@ class wechatCallbackapiTest
 			break;
 		case "文本":
 			$uploadRet = YouTu::generalocrurl("$pic", 1);
+			$content = var_dump($uploadRet);
+			$this -> text($postObj,$content);
+			/*
 			$items = $uploadRet['items'];
 			$itemsNum = count($items);
 			$content = "";
@@ -97,11 +100,13 @@ class wechatCallbackapiTest
 			{
 				$content = $content."\n".$items[$i]["itemstring"];
 			}
+			$content = var_dump($content);
 			$this -> text($postObj,$content);
 			break;
 		default:
-			$content = "无法进行颜值检测，因为据我的观察，这张图片最有是：".$tagName;
+			$content = "无法进行颜值检测，因为据我的观察，这张图片最有可能是：".$tagName;
 			$this -> text($postObj,$content);
+			*/
 	}
         
     }
