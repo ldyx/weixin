@@ -61,7 +61,31 @@ class wechatCallbackapiTest
         		$age = $uploadRet['face'][0]['age'];
         		$genderNum = $uploadRet['face'][0]['gender'];
         		$beauty = $uploadRet['face'][0]['beauty'];
-        		$content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
+			$expression = $uploadRet['face'][0]['expression'];
+			$glasses = $uploadRet['face'][0]['glasses'];
+			switch ($glasses)
+			{
+				case "0":
+					$glasses = "没戴眼镜";
+					break;
+				case "1":
+					$glasses = "戴了眼镜";
+					break;
+				case "2":
+					$glasses = "戴了墨镜";
+					break;
+			}
+			$hat = $uploadRet['face'][0]['hat'];
+			switch ($hat)
+			{
+				case "0":
+					$hat = "没戴帽子";
+					break;
+				case "1":
+					$hat = "戴了帽子";
+					break;
+			}
+        		$content ="检测结果如下：\n性别：".$gender."\n年龄："$age."\n微笑：".$expression."\n颜值：".$beauty."\n".$glasses."\n".$hat;
         		$this -> text($postObj,$content);
 			break;
 		default:
