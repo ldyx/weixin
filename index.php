@@ -78,6 +78,7 @@ switch ($tagName)
 		break;
 	case "文本":
 		$uploadRet = YouTu::generalocrurl("$pic", $seq = '');
+		$content = var_dump($uploadRet);
 		$items = $uploadRet['items'];
 		$itemsNum = count($items);
 		$content = "";
@@ -85,7 +86,7 @@ switch ($tagName)
 		{
 			$content = $content."\n".$items[$i]['itemstring'];
 		}
-		$content = "文本";
+		$content = var_dump($uploadRet);
 		$this -> text($postObj,$content);
 		break;
 	default:
