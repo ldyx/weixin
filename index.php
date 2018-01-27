@@ -56,23 +56,20 @@ class wechatCallbackapiTest
 	switch ($tagName)
 	{
 		case "女孩":
-			$gender = "女性";
+			
 		case "男孩":
-			if ($gender == "女性"){
-				
-			}else{$gender = "男性";}
-			$uploadRet = YouTu::detectfaceurl("$pic",1);
-			$age = $uploadRet['face'][0]['age'];
-			$beauty = $uploadRet['face'][0]['beauty'];
-			$expression = $uploadRet['face'][0]['expression'];
-			$glasses = $uploadRet['face'][0]['glasses'];
-			if ($glasses == "0"){
-				$glasses = "没戴眼镜";
-			}elseif($glasses == "1"){
-				$glasses = "戴了眼镜";
-			}else{$glasses = "戴了墨镜";}
-			$content = "检测到以下结果\n"."年龄：".$age."\n颜值：".$beauty."\n性别：".$gender."\n微笑程度：".$expression."\n".$glasses;
-			$this -> text($postObj,$content);
+			$uploadRet = YouTu::detectfaceurl("$pic", 1);
+        @$age = $uploadRet['face'][0]['age'];
+        @$genderNum = $uploadRet['face'][0]['gender'];
+        if ($genderNum >=50)
+        {
+	        $gender = "男性";
+        }else{
+	        $gender = "女性";
+        }
+        @$beauty = $uploadRet['face'][0]['beauty'];
+        $content ="检测结果如下：\n年龄：".$age."\n性别：".$gender."\n颜值：".$beauty;
+        $this -> text($postObj,$content);
 			break;
 		case "文本":
 			$uploadRet = YouTu::generalocrurl("$pic", $seq = '');
