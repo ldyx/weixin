@@ -52,6 +52,11 @@ class wechatCallbackapiTest
 	}
 	switch ($tagName)
 	{
+		case "文本":
+			$uploadRet = YouTu::generalocrurl("$pic", 1);
+			$content = $uploadRet['errormsg'];
+			$this -> text($postObj,$content);
+			break;
 		case "女孩":
 			$gender = "女性";
 		case "男孩":
@@ -88,10 +93,7 @@ class wechatCallbackapiTest
         		$content ="检测结果如下：\n性别：".$gender."\n年龄：".$age."\n微笑：".$expression."\n颜值：".$beauty."\n".$glasses."\n".$hat."\n暂时只支持检测图片中一个人脸（以脸最大的为准）";
         		$this -> text($postObj,$content);
 			break;
-		case "文本":
-			$uploadRet = YouTu::generalocrurl("$pic", 1);
-			$content = $uploadRet['errormsg'];
-			$this -> text($postObj,$content);
+		
 			/*
 			$items = $uploadRet['items'];
 			$itemsNum = count($items);
@@ -103,10 +105,11 @@ class wechatCallbackapiTest
 			$content = var_dump($content);
 			$this -> text($postObj,$content);
 			break;
+			*/
 		default:
 			$content = "无法进行颜值检测，因为据我的观察，这张图片最有可能是：".$tagName;
 			$this -> text($postObj,$content);
-			*/
+			
 	}
         
     }
