@@ -77,7 +77,7 @@ switch ($tagName)
 		$this -> text($postObj,$content);
 		break;
 	case "文本":
-		$uploadRet = YouTu::generalocrurl("$pic", $seq = '');
+		$uploadRet = YouTu::generalocrurl("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2237585379,1781173340&fm=27&gp=0.jpg", $seq = '');
 		$content = var_dump($uploadRet);
 		$items = $uploadRet['items'];
 		$itemsNum = count($items);
