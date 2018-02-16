@@ -49,10 +49,9 @@ iframe {border: 0px;}</style>
         window.onresize = resize;  
           
 // --></mce:script>  
-<body scroll="no">  
-<img border="0" width="100%" height="84" src="./images/logo.png" mce_src="images/logo.png">  
+<body scroll="no">   
 <iframe id="frame3d" name="frame3d" frameborder="0" width="100%" scrolling="auto"  
-    style="margin-top: -4px;" onload="this.style.height=document.body.clientHeight-84"  
+    style="margin-top: -4px;" onload="this.style.height=document.body.clientHeight"  
     height="100%" src="http://www.free-ss.site" mce_src="map.jsp"></iframe>   
 </body>  
 </html>  
