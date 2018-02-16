@@ -26,7 +26,7 @@ class wechatCallbackapiTest
 	    }elseif ($msgType == "text")
             {
                 $this->tuling($postObj);
-            }else($msgType == "image")
+            }elseif($msgType == "image")
             {
 		$pic = $postObj->PicUrl;
                 $this->youtu($postObj,$pic);
