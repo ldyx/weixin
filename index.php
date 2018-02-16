@@ -20,14 +20,14 @@ class wechatCallbackapiTest
 	    if ($msgType == "text")
             {
 		$content = $postObj->Content;
-	    	$findme = "ss账号";
+	    	$findme = "帐号";
 		$pos = stripos($content,$findme);
 	    if ($pos === false)
 	    {
 	    	$this->tuling($postObj);
 	    }else
 	    {
-	    	$content = "你是要ss账号吗？\n拿去：<a href='weixin1-weixin.1d35.starter-us-east-1.openshiftapps.com/free-ss.php'>点我获取</a>";
+	    	$content = "你是要ss账号吗？\n拿去：<a href='http://weixin1-weixin.1d35.starter-us-east-1.openshiftapps.com/free-ss.php'>点我获取</a>";
 		$this -> text($postObj,$content);
 	    }    
             }elseif($msgType == "image")
