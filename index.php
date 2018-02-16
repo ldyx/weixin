@@ -16,16 +16,20 @@ class wechatCallbackapiTest
             libxml_disable_entity_loader(true);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $msgType = $postObj->MsgType;
-	    $content = $postObj->Content;
-	    $findme = "s账号";
-	    $pos = stripos($content,$findme);
-	    if ($pos)
+	    
+	    if ($msgType == "text")
+            {
+		$content = $postObj->Content;
+	    	$findme = "ss账号";
+		$pos = stripos($content,$findme);
+	    if ($pos === false)
+	    {
+	    	$this->tuling($postObj);
+	    }else
 	    {
 	    	$content = "你是要ss账号吗？\n拿去：<a href='weixin1-weixin.1d35.starter-us-east-1.openshiftapps.com/free-ss.php'>点我获取</a>";
 		$this -> text($postObj,$content);
-	    }elseif ($msgType == "text")
-            {
-                $this->tuling($postObj);
+	    }    
             }elseif($msgType == "image")
             {
 		$pic = $postObj->PicUrl;
