@@ -145,7 +145,7 @@ class wechatCallbackapiTest
  $total1 = count($values[0]);
  $total2 = count($values[1]);
  $total3 = count($values[2]);
- $result="美国"."/n";
+ $result="美国\n";
  for ($i=0;$i<$total1;$i++)
  {
 	 for ($j=0;$j<$total2;$j++)
@@ -161,19 +161,19 @@ class wechatCallbackapiTest
 			}elseif($k == 1){
 				$result .= "端口号:".$results[1][0]." ";
 			}else{
-				$result .= "密码:".$results[1][0]."/n";
+				$result .= "密码:".$results[1][0]."\n";
 			}
 			
 		 }
 		
 	 }
 	if($i == 0){
-		$result .= "/n"."日本"."/n";
+		$result .= "\n"."日本"."\n";
 	}elseif($i == 1){
-		$result .= "/n"."新加坡"."/n";
+		$result .= "\n"."新加坡"."\n";
 	}
  }
- $content = $result."加密方式统一为'aes-256-cfb'/n公众号：资源CAT";
+ $content = $result."加密方式统一为'aes-256-cfb'\n公众号：资源CAT";
  $this->text($postObj,$content);
     }
 	
