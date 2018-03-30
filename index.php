@@ -27,8 +27,7 @@ class wechatCallbackapiTest
 	    	$this->tuling($postObj);
 	    }else
 	    {
-	    	$content = "你是要ss账号吗？\n拿去：<a href='http://weixin1-weixin.1d35.starter-us-east-1.openshiftapps.com/free-ss.php'>点我获取</a>";
-		$this -> text($postObj,$content);
+		$this -> freess($postObj);
 	    }    
             }elseif($msgType == "image")
             {
@@ -124,7 +123,62 @@ class wechatCallbackapiTest
 	}
         
     }
-    
+    public function freess()
+    {
+ $ch = curl_init();
+ curl_setopt($ch,CURLOPT_URL,"https://get.ishadowx.net");
+ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+ curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+ curl_setopt($ch,CURLOPT_HEADER,0);
+ 
+ $output = curl_exec($ch);
+ if($output === FALSE ){
+ echo "CURL Error:".curl_error($ch);
+ }
+ curl_close($ch);
+ 
+ $tag="span";
+ $attr="id";
+ $values=array(
+ array("ip","port","pw"),
+ array("us","jp","sg"),
+ array("a","b","c")
+ );
+ $total1 = count($values[0]);
+ $total2 = count($values[1]);
+ $total3 = count($values[2]);
+ $result="美国"."<br />";
+ for ($i=0;$i<$total1;$i++)
+ {
+	 for ($j=0;$j<$total2;$j++)
+	 {
+		 for ($k=0;$k<$total3;$k++)
+		 {
+			$value = $values[0][$k].$values[1][$i].$values[2][$j];
+			$regex = "/<$tag.*?$attr=\"$value\".*?>(.*?)<\/$tag>/is";  
+			preg_match_all($regex,$output,$results,PREG_PATTERN_ORDER);
+			
+			if ($k == 0){
+				$result .= ($j+1)."、IP地址：".$results[1][0]." ";	
+			}elseif($k == 1){
+				$result .= "端口号:".$results[1][0]." ";
+			}else{
+				$result .= "密码:".$results[1][0]."<br />";
+			}
+			
+		 }
+		
+	 }
+	if($i == 0){
+		$result .= "<br />"."日本"."<br />";
+	}elseif($i == 1){
+		$result .= "<br />"."新加坡"."<br />";
+	}
+ }
+ $content = $result."加密方式统一为'aes-256-cfb'<br />公众号：资源CAT";
+ $this->text($postObj,$content);
+    }
+	
     public function tuling($postObj)
     {
         $key = "dd9ea2173ef44d29b1ad729346639c46";
