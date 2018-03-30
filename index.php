@@ -157,9 +157,9 @@ class wechatCallbackapiTest
 			preg_match_all($regex,$output,$results,PREG_PATTERN_ORDER);
 			
 			if ($k == 0){
-				$result .= ($j+1)."、IP地址：".$results[1][0]." ";	
+				$result .= ($j+1)."、IP地址：".$results[1][0]."\n";	
 			}elseif($k == 1){
-				$result .= "端口号:".$results[1][0]." ";
+				$result .= "端口号:".$results[1][0]."\n";
 			}else{
 				$result .= "密码:".$results[1][0]."\n";
 			}
@@ -168,9 +168,9 @@ class wechatCallbackapiTest
 		
 	 }
 	if($i == 0){
-		$result .= "\n"."日本"."\n";
+		$result .= "日本"."\n";
 	}elseif($i == 1){
-		$result .= "\n"."新加坡"."\n";
+		$result .= "新加坡"."\n";
 	}
  }
  $content = $result."加密方式统一为'aes-256-cfb'\n公众号：资源CAT";
