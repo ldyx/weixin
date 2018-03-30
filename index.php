@@ -20,7 +20,7 @@ class wechatCallbackapiTest
 	    if ($msgType == "text")
             {
 		$content = $postObj->Content;
-	    if ($Content == "账号")
+	    if(strpos($Content,"账号") !== false))
 	    {
 	    	$this->freess($postObj);
 	    }else
