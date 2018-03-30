@@ -20,12 +20,12 @@ class wechatCallbackapiTest
 	    if ($msgType == "text")
             {
 		$content = $postObj->Content;
-	    if ($Content === "账号")
+	    if ($Content == "账号")
 	    {
-	    	$this->tuling($postObj);
+	    	$this->freess($postObj);
 	    }else
 	    {
-		$this -> freess($postObj);
+		$this -> tuling($postObj);
 	    }    
             }elseif($msgType == "image")
             {
