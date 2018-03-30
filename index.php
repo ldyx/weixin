@@ -123,7 +123,7 @@ class wechatCallbackapiTest
 	}
         
     }
-    public function freess()
+    public function freess($postObj)
     {
  $ch = curl_init();
  curl_setopt($ch,CURLOPT_URL,"https://get.ishadowx.net");
