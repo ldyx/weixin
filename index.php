@@ -20,9 +20,7 @@ class wechatCallbackapiTest
 	    if ($msgType == "text")
             {
 		$content = $postObj->Content;
-	    	$findme = "帐号";
-		$pos = stripos($content,$findme);
-	    if ($pos === false)
+	    if ($Content === "账号")
 	    {
 	    	$this->tuling($postObj);
 	    }else
