@@ -157,7 +157,7 @@ class wechatCallbackapiTest
 			preg_match_all($regex,$output,$results,PREG_PATTERN_ORDER);
 			
 			if ($k == 0){
-				$result .= ($j+1)."、IP地址：".$results[1][0]."\n";	
+				$result .= ($j+1)."、\nIP地址：".$results[1][0]."\n";	
 			}elseif($k == 1){
 				$result .= "端口号:".$results[1][0]."\n";
 			}else{
